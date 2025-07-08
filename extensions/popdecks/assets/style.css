@@ -1,0 +1,237 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Hide by default */
+.hidden {
+  display: none;
+}
+
+/* Popup Box */
+.popup-box {
+  background: white;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Section */
+.popup-image {
+  flex: 0 0 40%;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content Section */
+.popup-content {
+  flex: 1;
+  padding: 20px;
+  position: relative;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+}
+
+.popup-content h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.popup-content p {
+  margin: 10px 0 20px;
+  color: #555;
+}
+
+.popup-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.popup-cta {
+  width: 100%;
+  background-color: #008060;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.popup-skip {
+  background: none;
+  border: none;
+  color: #666;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+}
+
+.popup-email-label {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.popup-phone-label {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+
+
+/* Recommendation  */
+.offer-card-wrapper {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.offer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.offer-header h2 {
+  font-size: 40px;
+  color: #1c1c1c;
+  font-weight: 400;
+  margin: 0 0 10px 0;
+}
+
+.skip-all-btn {
+  background: transparent;
+  border: none;
+  color: #007ace;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.skip-all-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.offer-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  /* text-align: center; */
+  background: #ffffff;
+  transition: box-shadow 0.3s ease, transform 0.2s;
+}
+
+.offer-item:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.offer-item img {
+  width: 100%;
+  height: 200px;
+  /* aspect-ratio: 1 / 1; */
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+}
+
+.offer-item h4 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1rem;
+  line-height: 1.4;
+}
+
+.offer-item button {
+  display: inline-block;
+  background-color: #008060;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius:s 0px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.offer-item button:hover {
+  background-color: #006e52;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .offer-header h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+  .skip-all-btn {
+    font-size: 1.2rem;
+  }
+  .offer-card-wrapper {
+    padding: 2rem;
+  }
+}

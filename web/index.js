@@ -1,5 +1,5 @@
 // @ts-check
-import { join } from "path";
+import path, { join } from "path";
 import { readFileSync } from "fs";
 import express from "express";
 import serveStatic from "serve-static";
@@ -7,6 +7,9 @@ import serveStatic from "serve-static";
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
 import PrivacyWebhookHandlers from "./privacy.js";
+import dbConn from "./Utils/db.js";
+import Router from "./routes/Auth.Route.js";
+import { fileURLToPath } from "url";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -38,39 +41,32 @@ app.post(
 app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
+app.use("/proxy/*", authenticateUser);
+app.set('trust proxy', true)
+app.use(express.json());
 
-app.get("/api/products/count", async (_req, res) => {
-  const client = new shopify.api.clients.Graphql({
-    session: res.locals.shopify.session,
-  });
-
-  const countData = await client.request(`
-    query shopifyProductCount {
-      productsCount {
-        count
-      }
-    }
-  `);
-
-  res.status(200).send({ count: countData.data.productsCount.count });
-});
-
-app.post("/api/products", async (_req, res) => {
-  let status = 200;
-  let error = null;
-
-  try {
-    await productCreator(res.locals.shopify.session);
-  } catch (e) {
-    console.log(`Failed to process products/create: ${e.message}`);
-    status = 500;
-    error = e.message;
+app.use("/api", Router)
+app.use("/proxy", Router)
+async function authenticateUser(req, res, next) {
+  let shop = req.query.shop;
+  let storeName = await shopify.config.sessionStorage.findSessionsByShop(shop);
+  console.log("storename for view", storeName);
+  if (shop === storeName[0].shop) {
+    next();
+  } else {
+    res.send("User is not Authorized");
   }
-  res.status(status).send({ success: status === 200, error });
-});
+}
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PublicAssetsPath = path.join(__dirname, 'public/assets');
+// Serve assets at /assets/filename
+app.use('/assets', express.static(PublicAssetsPath));
+
 
 app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
   return res
@@ -83,4 +79,9 @@ app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
     );
 });
 
-app.listen(PORT);
+dbConn();
+
+
+app.listen(PORT, () => {
+  console.log(`Frontend running at http://localhost:${PORT}`);
+});

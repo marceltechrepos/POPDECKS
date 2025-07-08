@@ -43,7 +43,6 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 app.use(express.json());
 app.use("/proxy/*", authenticateUser);
 app.set('trust proxy', true)
-app.use(express.json());
 
 app.use("/api", Router)
 app.use("/proxy", Router)

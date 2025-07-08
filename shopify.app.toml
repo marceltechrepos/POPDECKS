@@ -3,7 +3,7 @@
 client_id = "849167d7e53096af4c222842c24e14af"
 name = "POPDECKS"
 handle = "popdecks"
-application_url = "https://occupied-councils-premium-award.trycloudflare.com"
+application_url = "https://expression-metallic-cooperation-fan.trycloudflare.com"
 embedded = true
 
 [build]
@@ -19,13 +19,13 @@ scopes = "read_assigned_fulfillment_orders,read_cart_transforms,read_checkout_br
 
 [auth]
 redirect_urls = [
-  "https://occupied-councils-premium-award.trycloudflare.com/auth/callback",
-  "https://occupied-councils-premium-award.trycloudflare.com/auth/shopify/callback",
-  "https://occupied-councils-premium-award.trycloudflare.com/api/auth/callback"
+  "https://expression-metallic-cooperation-fan.trycloudflare.com/auth/callback",
+  "https://expression-metallic-cooperation-fan.trycloudflare.com/auth/shopify/callback",
+  "https://expression-metallic-cooperation-fan.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://occupied-councils-premium-award.trycloudflare.com/proxy"
+url = "https://expression-metallic-cooperation-fan.trycloudflare.com/proxy"
 subpath = "optistep"
 prefix = "apps"
 

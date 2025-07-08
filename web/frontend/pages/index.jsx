@@ -42,85 +42,16 @@ function Index() {
         <Layout.Section>
           <Card sectioned>
             <Stack vertical>
-              <Heading element="h1">OptiStep</Heading>
+              <Heading element="h1">Pop Deck</Heading>
               <Text variant="bodyMd" as="p">
-                Boost conversions with AI-powered upsells, cross-sells, and customer engagement tools
+                Convert Visitors. Capture Leads. All from PopDeck
               </Text>
-              <Heading element="h3">Enable the extension</Heading>
-              <Button
-                variant="primary"
-                onClick={handleEnableExtension}
-              >
-                Click to enable Extension
-              </Button>
+              <Heading element="h3">To Apply the popup feature please Enable the extension</Heading>
+
             </Stack>
           </Card>
         </Layout.Section>
 
-        {/* First Row - Two Cards */}
-        <Layout.Section>
-          <Layout>
-            <Layout.Section oneHalf>
-              <Card title="Upsell & Cross-sell Engine" sectioned>
-                <Stack vertical spacing="tight">
-                  <Icon source={ProductsMajor} color="primary" />
-                  <TextContainer>
-                    <Text variant="bodyMd" as="p">
-                      <Badge status="success">Live</Badge> Display relevant offers based on:
-                    </Text>
-                    <ul>
-                      <li>Cart contents</li>
-                      <li>Product tags</li>
-                      <li>Collections</li>
-                    </ul>
-                  </TextContainer>
-                  <CalloutCard
-                    title="Key Features"
-                    illustration=""
-                    primaryAction={{
-                      content: 'Configure offers',
-                      url: '/offers'
-                    }}
-                  >
-                    <Stack vertical>
-                      <Text as="p">• AJAX-based "Add to Cart"</Text>
-                      <Text as="p">• "Skip this offer" option</Text>
-                      <Text as="p">• Conversion analytics</Text>
-                    </Stack>
-                  </CalloutCard>
-                </Stack>
-              </Card>
-            </Layout.Section>
-
-            <Layout.Section oneHalf>
-              <Card title="Thank-You Page Enhancer" sectioned>
-                <Stack vertical spacing="tight">
-                  <Icon source={ConfettiMajor} color="primary" />
-                  <TextContainer>
-                    <Text variant="bodyMd" as="p">
-                      <Badge status="success">Live</Badge> Post-purchase features:
-                    </Text>
-                  </TextContainer>
-                  <CalloutCard
-                    title="Key Features"
-                    illustration=""
-                    primaryAction={{
-                      content: 'Customize pages',
-                      url: '/thankyou'
-                    }}
-                  >
-                    <Stack vertical>
-                      <Text as="p">• Product recommendations</Text>
-                      <Text as="p">• Discount coupons</Text>
-                      <Text as="p">• Social sharing</Text>
-                      <Text as="p">• Upsell tracking</Text>
-                    </Stack>
-                  </CalloutCard>
-                </Stack>
-              </Card>
-            </Layout.Section>
-          </Layout>
-        </Layout.Section>
 
         {/* Second Row - Two Cards */}
         <Layout.Section>
@@ -161,7 +92,7 @@ function Index() {
           </Layout>
         </Layout.Section>
       </Layout>
-      <Toaster 
+      <Toaster
         position='top-right'
       />
     </Page>

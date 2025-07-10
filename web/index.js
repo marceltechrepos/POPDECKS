@@ -5,11 +5,12 @@ import express from "express";
 import serveStatic from "serve-static";
 
 import shopify from "./shopify.js";
+// @ts-ignore
 import productCreator from "./product-creator.js";
 import PrivacyWebhookHandlers from "./privacy.js";
 import dbConn from "./Utils/db.js";
-import Router from "./routes/Auth.Route.js";
 import { fileURLToPath } from "url";
+import Router from "./routes/Auth.Route.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
@@ -22,7 +23,6 @@ const STATIC_PATH =
     : `${process.cwd()}/frontend/`;
 
 const app = express();
-
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());
 app.get(
@@ -39,13 +39,14 @@ app.post(
 // also add a proxy rule for them in web/frontend/vite.config.js
 
 app.use("/api/*", shopify.validateAuthenticatedSession());
-
-app.use(express.json());
 app.use("/proxy/*", authenticateUser);
 app.set('trust proxy', true)
+app.use(express.json());
 
 app.use("/api", Router)
 app.use("/proxy", Router)
+
+
 async function authenticateUser(req, res, next) {
   let shop = req.query.shop;
   let storeName = await shopify.config.sessionStorage.findSessionsByShop(shop);
@@ -57,9 +58,6 @@ async function authenticateUser(req, res, next) {
   }
 }
 
-app.use(shopify.cspHeaders());
-app.use(serveStatic(STATIC_PATH, { index: false }));
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PublicAssetsPath = path.join(__dirname, 'public/assets');
@@ -67,6 +65,14 @@ const PublicAssetsPath = path.join(__dirname, 'public/assets');
 app.use('/assets', express.static(PublicAssetsPath));
 
 
+
+dbConn();
+
+
+app.use(shopify.cspHeaders());
+app.use(serveStatic(STATIC_PATH, { index: false }));
+
+// @ts-ignore
 app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
   return res
     .status(200)
@@ -77,9 +83,6 @@ app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
         .replace("%VITE_SHOPIFY_API_KEY%", process.env.SHOPIFY_API_KEY || "")
     );
 });
-
-dbConn();
-
 
 app.listen(PORT, () => {
   console.log(`Frontend running at http://localhost:${PORT}`);

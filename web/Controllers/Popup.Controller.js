@@ -83,7 +83,7 @@ export const createPopup = async (req, res) => {
                     ctaText,
                     exitIntent: parsedExitIntent,
                     Image: imageUrl,
-                    storeName
+                    storeName: storeName.toLowerCase()
                 },
                 { new: true }
             );

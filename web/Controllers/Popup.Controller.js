@@ -48,8 +48,8 @@ export const createPopup = async (req, res) => {
         const parsedExitIntent = exitIntent === 'true';
 
         // Construct image URL
-        const BASE_IMAGE_URL = "http://localhost:61979";
-        // const BASE_IMAGE_URL = `${req.protocol}://${req.get("host")}`;
+        // const BASE_IMAGE_URL = "http://localhost:61979";
+        const BASE_IMAGE_URL = `${req.protocol}://${req.get("host")}`;
 
         const imageUrl = `${BASE_IMAGE_URL}/assets/${req.file.filename}`;
 

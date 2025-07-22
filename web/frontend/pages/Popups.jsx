@@ -74,29 +74,51 @@ function Popups() {
       }
       console.log("✅ Popup saved:", result);
     } catch (error) {
-      alert("❌ Failed to save popup:", error);
+      // alert("❌ Failed to save popup:", error);
+      console.log("❌ Failed to save popup:", error);
     }
   };
 
   const getPopup = async () => {
     try {
-      const storeName = store.storeName; // Make sure this is defined
+      const storeName = store.storeName;
 
-      const response = await fetch(`/api/get-popup?storeName=${encodeURIComponent(storeName)}`, {
+      const response = await fetch(`/api/get-popup?storeName=${encodeURIComponent(storeName).toLowerCase()}`, {
         method: "GET",
       });
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result.success && result.popup) {
         toast.success(result.message);
+
+        const popupData = result.popup;
+
+        // Set form state from fetched data
+        setPopupTitle(popupData.title || '');
+        setPopupContent(popupData.Content || '');
+        setCtaText(popupData.ctaText || '');
+        setDelaySeconds(popupData.delaySeconds || 0);
+        setScrollPercentage(popupData.scrollPercentage || 0);
+        setCollectEmail(popupData.collectEmail || false);
+        setCollectSMS(popupData.collectSMS || false);
+        setExitIntentActive(popupData.exitIntent || false);
+        setImageUrl(popupData.Image || '');
+
+        // Handle triggerType checkbox values
+        const triggers = [];
+        if (popupData.delaySeconds > 0) triggers.push('time-delay');
+        if (popupData.scrollPercentage > 0) triggers.push('scroll-percentage');
+        if (popupData.exitIntent) triggers.push('exit-intent');
+        setTriggerType(triggers);
+
       } else {
-        toast.error(result.message);
+        toast.error(result.message || 'Failed to fetch popup');
       }
 
       console.log("✅ Popup fetched:", result);
     } catch (error) {
-      alert("❌ Failed to fetch popup:", error);
+      console.log("❌ Failed to fetch popup:", error);
     }
   };
 
@@ -118,12 +140,13 @@ function Popups() {
 
   // Remove uploaded image
   const removeImage = () => {
-    setImage(null);
-    setImageUrl('');
-    if (imageUrl) {
+    if (image && imageUrl && imageUrl.startsWith('blob:')) {
       URL.revokeObjectURL(imageUrl);
     }
+    setImage(null);
+    setImageUrl('');
   };
+
 
   // Preview popup component - HORIZONTAL RECTANGULAR DESIGN
   const PreviewPopup = () => (
@@ -169,6 +192,8 @@ function Popups() {
           />
         </div>
       )}
+
+
 
       {/* Content section (right) */}
       <div style={{

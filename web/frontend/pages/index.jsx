@@ -41,16 +41,28 @@ function Index() {
         {/* Full-width Header Section */}
         <Layout.Section>
           <Card sectioned>
-            <Stack vertical>
+            <Stack vertical spacing="tight">
               <Heading element="h1">Pop Deck</Heading>
               <Text variant="bodyMd" as="p">
-                Convert Visitors. Capture Leads. All from PopDeck
+                Convert Visitors. Capture Leads. All from PopDeck.
               </Text>
-              <Heading element="h3">To Apply the popup feature please Enable the extension</Heading>
 
+
+              <hr />
+              <Heading element="h2">To apply the popup feature, please enable the extension:</Heading>
+              <hr />
+
+              <Stack vertical spacing="loose">
+                <Text as="p">1. Go to <strong>Online Store</strong> in your Shopify Admin Panel.</Text>
+                <Text as="p">2. Click <strong>Customize</strong> next to your active theme.</Text>
+                <Text as="p">3. In the theme editor, click the <strong>App embeds</strong> (⚙️ icon or left sidebar).</Text>
+                <Text as="p">4. Find and enable the <strong>PopDeck</strong> extension toggle.</Text>
+                <Text as="p">5. Click <strong>Save</strong> in the top-right corner.</Text>
+              </Stack>
             </Stack>
           </Card>
         </Layout.Section>
+
 
 
         {/* Second Row - Two Cards */}

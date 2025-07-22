@@ -2,6 +2,7 @@ const storeName = Shopify.shop.split(".")[0];
 let Content, imageUrl, ctaText, Title, delay, scrollPercentage, exitIntentActive, email, phone;
 
 const checkApi = async (onSuccess) => {
+  console.log("store_Id", Shopify);
   try {
     const response = await fetch(`https://${Shopify.shop}/apps/optistep/get-popup?storeName=${storeName}`, {
       method: "GET",

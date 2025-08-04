@@ -8,6 +8,7 @@ import Popups from "./pages/Popups.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setStoreDetail } from "./redux/Slices/StoreSlice.js";
+import PopupUser from "./pages/PopupUser.jsx";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ export default function App() {
           <NavMenu>
             <Link to="/" rel="home" />
             <Link to="Popups" element={Popups}>Popups</Link>
+            <Link to="PopupUser" element={PopupUser}>Popup User</Link>
           </NavMenu>
           <Routes pages={pages} />
         </QueryProvider>

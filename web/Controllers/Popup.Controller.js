@@ -166,3 +166,14 @@ export const popupUser = async (req, res) => {
         res.status(500).json({ message: "Internal server error", success: false });
     }
 };
+
+export const getAllPopupsUsers = async (req, res) => {
+    try {
+        const { storeName } = req.query;
+        const popupUsers = await PopupUserModel.find({ store_Id: storeName });
+        res.status(200).json({ popupUsers, message: "popupUsers fetched successfully", success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error", success: false });
+    }
+};

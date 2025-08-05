@@ -4,7 +4,7 @@ let Content, imageUrl, ctaText, Title, delay, scrollPercentage, exitIntentActive
 const checkApi = async (onSuccess) => {
   console.log("store_Id", Shopify);
   try {
-    const response = await fetch(`https://${Shopify.shop}/apps/optistep/get-popup?storeName=${storeName}`, {
+    const response = await fetch(`https://${Shopify.shop}/apps/optistep-2/get-popup?storeName=${storeName}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const checkApi = async (onSuccess) => {
 
 const createUser = async (emailvalue, phonevalue) => {
   try {
-    const response = await fetch(`https://${Shopify.shop}/apps/optistep/create-popup-user`, {
+    const response = await fetch(`https://${Shopify.shop}/apps/optistep-2/create-popup-user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

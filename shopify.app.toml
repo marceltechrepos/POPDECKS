@@ -22,7 +22,7 @@ redirect_urls = ["https://powell-rh-beijing-professor.trycloudflare.com/auth/cal
 
 [app_proxy]
 url = "https://powell-rh-beijing-professor.trycloudflare.com/proxy"
-subpath = "optistep"
+subpath = "optistep-2"
 prefix = "apps"
 
 [pos]

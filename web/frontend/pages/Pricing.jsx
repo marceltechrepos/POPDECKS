@@ -14,7 +14,7 @@ export default function Pricing() {
     const plans = [
         {
             id: 'starter',
-            title: '💡 Starter — $798/month',
+            title: '💡 Starter — $1/month',
             name: store?.storeName || 'Your Store',
             price: 798,
             store_id: store?.Store_Id || 3123232,
@@ -35,7 +35,7 @@ export default function Pricing() {
         },
         {
             id: 'pro',
-            title: '🏆 Pro — $1,798/month',
+            title: '🏆 Pro — $2,000/month',
             name: store?.storeName || 'Your Store',
             price: 1798,
             store_id: store?.Store_Id || 3123232,
